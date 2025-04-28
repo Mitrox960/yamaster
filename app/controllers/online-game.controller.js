@@ -1,21 +1,17 @@
 // app/controller/online-game.controller.js
 
 import React, { useEffect, useState, useContext } from "react";
-import { StyleSheet, Text, View , Button} from "react-native";
+import { StyleSheet, Text, View, Button } from "react-native";
 import { SocketContext } from '../contexts/socket.context';
-import Board from '../components/board/board.component';
+import  Board  from '../components/board/board.component'
 
-export default function OnlineGameController({navigation}) {
+export default function OnlineGameController({ navigation }) {
 
     const socket = useContext(SocketContext);
 
     const [inQueue, setInQueue] = useState(false);
     const [inGame, setInGame] = useState(false);
     const [idOpponent, setIdOpponent] = useState(null);
-
-    const leaveQueue= () => {
-        socket.emit("queue.leave");
-    }
 
     useEffect(() => {
         console.log('[emit][queue.join]:', socket.id);
@@ -29,6 +25,19 @@ export default function OnlineGameController({navigation}) {
             setInGame(data['inGame']);
         });
 
+        socket.on('queue.leave', (data) => {
+            console.log('[listen][game.start]:', data);
+            setInQueue(data['inQueue']);
+            setInGame(data['inGame']);
+            setIdOpponent(data['idOpponent']);
+        });
+        socket.on('queue.left', (data) => {
+            console.log('[listen][game.start]:', data);
+            setInQueue(data['inQueue']);
+            setInGame(data['inGame']);
+            navigation.navigate('HomeScreen')
+        });
+
         socket.on('game.start', (data) => {
             console.log('[listen][game.start]:', data);
             setInQueue(data['inQueue']);
@@ -36,15 +45,7 @@ export default function OnlineGameController({navigation}) {
             setIdOpponent(data['idOpponent']);
         });
 
-        socket.on('queue.left', (data) => {
-            console.log('[listen][queue.left]:', data);
-            setInQueue(data['inQueue']);
-            setInGame(data['inGame']);
-            navigation.navigate('HomeScreen');
-        });
-        
     }, []);
-
     return (
         <View style={styles.container}>
             {!inQueue && !inGame && (
@@ -60,12 +61,10 @@ export default function OnlineGameController({navigation}) {
                     <Text style={styles.paragraph}>
                         Waiting for another player...
                     </Text>
-                    <View>
-                            <Button
-                              title="Quitter la file d'attente"
-                              onPress={() => leaveQueue()}
-                            />
-                          </View>
+                    <Button
+                        title="Revenir au menu"
+                        onPress={() => socket.emit("queue.leave")}
+                    />
                 </>
             )}
 

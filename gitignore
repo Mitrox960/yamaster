@@ -1,0 +1,46 @@
+# Node modules
+node_modules/
+
+# Expo
+.expo/
+.expo-shared/
+
+# macOS system files
+.DS_Store
+
+# npm logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# dotenv environment variables
+.env
+.env.local
+.env.*.local
+
+# IDEs & editors
+.vscode/
+.idea/
+
+# Metro bundler cache
+metro-cache/
+react-native-packager-cache-*/
+
+# Watchman
+.watchmanconfig
+
+# Bundler output
+dist/
+build/
+
+# Optional: OS / temp files
+*.swp
+*.tmp
+*.log
+
+# Expo Go cache
+*.expo
+
+# Android / iOS builds (si ejecté)
+android/
+ios/

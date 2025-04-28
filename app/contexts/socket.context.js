@@ -21,7 +21,7 @@ socket.on("connect", () => {
 
 socket.on("disconnect", () => {
   hasConnection = false;
-  console.log("disconnected from server"); // undefined
+  console.log("disconnected from server"); 
   socket.removeAllListeners();
 });
 

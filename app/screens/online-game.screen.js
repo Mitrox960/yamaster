@@ -6,6 +6,7 @@ import { SocketContext } from '../contexts/socket.context';
 import OnlineGameController from "../controllers/online-game.controller";
 
 export default function OnlineGameScreen({ navigation }) {
+
     const socket = useContext(SocketContext);
 
     return (
@@ -22,8 +23,8 @@ export default function OnlineGameScreen({ navigation }) {
             )}
 
             {socket && (
-                <OnlineGameController navigation={navigation}/>
-            )}
+                <OnlineGameController navigation={navigation} />
+        )}
         </View>
     );
 }

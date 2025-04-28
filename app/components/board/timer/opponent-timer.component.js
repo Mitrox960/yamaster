@@ -9,13 +9,13 @@ import { SocketContext } from "../../../contexts/socket.context";
 const OpponentTimer = () => {
     const socket = useContext(SocketContext);
     const [opponentTimer, setOpponentTimer] = useState(0);
-
+  
     useEffect(() => {
-
+  
       socket.on("game.timer", (data) => {
         setOpponentTimer(data['opponentTimer'])
       });
-
+  
     }, []);
     return (
       <View style={styles.opponentTimerContainer}>
@@ -23,9 +23,9 @@ const OpponentTimer = () => {
       </View>
     );
   };
-
+  
   const styles = StyleSheet.create({
-    opponentTimerContainer: {
+    playerTimerContainer: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',

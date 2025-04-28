@@ -6,9 +6,10 @@
     "expo": "^52.0.16",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "react-native": "0.76.9",
+    "react-native": "0.76.3",
     "react-native-web": "~0.19.6",
-    "socket.io-client": "^4.3.2"
+    "socket.io-client": "^4.3.2",
+    "uniqid": "^5.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.19.3"
